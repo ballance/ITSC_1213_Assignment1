@@ -6,6 +6,7 @@
 package buchananbranson_assignment1_itis1213;
 
 import BookClasses.*;
+import static BookClasses.Sound.combine5Sounds;
 import java.io.*;
 import java.nio.*;
 import java.util.InputMismatchException;
@@ -27,9 +28,9 @@ public class Assignment1_ITIS1213 {
     public static void main(String[] args) throws InterruptedException {
         
         //TODO: change the path below to reflect the path to your mediasources file
-        String path = "/Users/bransonbuchanan/Google\\ Drive/School/Comp\\ Sci/Projects/ITSC_1213/MediaCompClasses/src/mediasources";
+        String path = "/Users/bransonbuchanan/Google Drive/School/Comp Sci/Projects/ITSC_1213/MediaCompClasses/src/mediasources/";
 
-        //*********************************************************************
+        //*********************************************************************MediaCompClasses/src/mediasources
         // DO NOT CHANGE THE CODE BELOW
         int spliceIndex[] = new int[200];
         int numSplicePoints = 0;
@@ -83,14 +84,34 @@ public class Assignment1_ITIS1213 {
         }
 
         // create an audiopoem object out of the sound and the splicearary
-        AudioPoem myPoem = new AudioPoem(mySound, spliceIndex, numSplicePoints);
+        //AudioPoem myPoem = new AudioPoem(mySound, spliceIndex, numSplicePoints);
 
         // DO NOT CHANGE THE CODE ABOVE
         //**********************************************************
         //**********************************************************
         // TODO: Put your Assignment 1 code to play the different AudioPoem methods here
-        myPoem.play();
-
+        //myPoem.play();
+        //Thread.sleep(1000);
+        //myPoem.play(2000);
+        //myPoem.play(1500, "output.wav", path); //Won't write out
+        //myPoem.playRandomOrder(4,200);
+        //myPoem.playReverseOrder(200);
+        //myPoem.playDoublets(2);
+        //myPoem.playTriplets(3);
+        
+        //Part 3
+        Sound mySound1 = new Sound("the.wav");
+        Sound mySound2 = new Sound("president.wav");
+        Sound mySound3 = new Sound("is.wav");
+        Sound mySound4 = new Sound("a.wav");
+        Sound mySound5 = new Sound("rabbit.wav");
+        
+        Sound newSound = new Sound(combine5Sounds(mySound1,mySound2,mySound3,mySound4,mySound5));
+        int part3Splices[] = {2300,8650,11250,19790,25600,36860,39770,47045,49850,58780};
+        AudioPoem newPoem = new AudioPoem(newSound,part3Splices,10);
+        newPoem.play();
+        
+        
         // Part 4: When you get to part 4, comment everything from line 28 through line 93, then uncomment the four lines of 
         // code below and run the project to see what happens.
         // Then look at the CupSong class as an example for how to build your own song-playing class.
