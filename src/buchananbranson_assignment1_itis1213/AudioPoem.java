@@ -150,7 +150,17 @@ public class AudioPoem {
      * @throws InterruptedException
      */
     public void playDoublets(int numDoublets) throws InterruptedException {
-
+        int n;
+        int x = 0;
+        Random rand = new Random();
+        while(x < numDoublets){
+            n = rand.nextInt(numWords);
+            myWordArray[n].blockingPlay();
+            Thread.sleep(100);
+            myWordArray[n+1].blockingPlay();
+            x++;
+            Thread.sleep(400);
+        }
     }
 
     /**
@@ -163,6 +173,18 @@ public class AudioPoem {
      * @throws InterruptedException
      */
     public void playTriplets(int numTriplets) throws InterruptedException {
-
+        int n;
+        int x = 0;
+        Random rand = new Random();
+        while(x < numTriplets){
+            n = rand.nextInt(numWords-2);
+            myWordArray[n].blockingPlay();
+            Thread.sleep(100);
+            myWordArray[n+1].blockingPlay();
+            Thread.sleep(100);
+            myWordArray[n+2].blockingPlay();
+            x++;
+            Thread.sleep(400);
+        }
     }
 }
