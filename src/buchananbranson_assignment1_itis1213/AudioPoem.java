@@ -9,8 +9,11 @@ import BookClasses.FileChooser;
 import BookClasses.Sound;
 import BookClasses.SoundException;
 import BookClasses.SoundSample;
+import BookClasses.SimpleSound;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Random;
 
 /**
  * This class contains methods for mixing up the words in an audio file and
@@ -59,17 +62,27 @@ public class AudioPoem {
      * @throws InterruptedException
      */
     public void play(int pause) throws InterruptedException {
-
+        for (int i = 0; i < numWords; i++) {
+            myWordArray[i].blockingPlay();
+            Thread.sleep(pause);
+        }
     }
+
     /**
-     * Plays the words, in order with a parameter-specified pause between each and writes the resulting sound out to a file
+     * Plays the words, in order with a parameter-specified pause between each
+     * and writes the resulting sound out to a file
+     *
      * @param pause the number of milliseconds to pause between words
      * @param filename the name of the file to write
      * @param path the path where the file should be written
-     * @throws InterruptedException 
+     * @throws InterruptedException
      */
     public void play(int pause, String filename, String path) throws InterruptedException {
-
+        for (int i = 0; i < numWords; i++) {
+            myWordArray[i].blockingPlay();
+            Thread.sleep(pause);
+           // myWordArray.write(path+filename); //Can't find write symbol
+        }
     }
 
     /**
@@ -80,7 +93,15 @@ public class AudioPoem {
      * @throws InterruptedException
      */
     public void playRandomOrder(int totalWords, int pause) throws InterruptedException {
-
+        int i = 0;
+        int n;
+        Random rand = new Random();
+        while(i<numWords){
+            n = rand.nextInt(totalWords);
+            myWordArray[n].blockingPlay();
+            Thread.sleep(pause);
+            i++;
+        }
     }
 
     /**
@@ -90,7 +111,20 @@ public class AudioPoem {
      * @throws InterruptedException
      */
     public void playRandomUnique(int pause) throws InterruptedException {
-
+        int i = 0;
+        int n;
+        Random rand = new Random();
+        Boolean Check[] = new Boolean[numWords]; 
+        Arrays.fill(Check,Boolean.FALSE);
+        while(i < numWords){
+            n = rand.nextInt(numWords);
+            if(Check[n]==false){
+                myWordArray[n].blockingPlay();
+                Thread.sleep(pause);
+                Check[n]=true;
+            }
+            i++;
+        }
     }
 
     /**
@@ -101,7 +135,10 @@ public class AudioPoem {
      * @throws InterruptedException
      */
     public void playReverseOrder(int pause) throws InterruptedException {
-
+        for (int i = numWords-1; i >= 0; i--) {
+            myWordArray[i].blockingPlay();
+            Thread.sleep(pause);
+        }
     }
 
     /**
