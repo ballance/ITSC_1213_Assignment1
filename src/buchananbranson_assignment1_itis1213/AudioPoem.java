@@ -84,10 +84,10 @@ public class AudioPoem {
      * @throws InterruptedException
      */
     public void play(int pause, String filename, String path) throws InterruptedException {
-        Sound outputSound = new Sound(myWordArray.length);
+        Sound outputSound = new Sound(myWordArray.length*500);
         int j =0;
         for (int i = 0; i < numWords; i++) {
-            myWordArray[i].blockingPlay();
+            //myWordArray[i].blockingPlay();
             Thread.sleep(pause);
             for(int x=0; i < myWordArray[i].getLength(); x++){
                outputSound.setSampleValueAt(j,myWordArray[i].getSampleValueAt(x));
