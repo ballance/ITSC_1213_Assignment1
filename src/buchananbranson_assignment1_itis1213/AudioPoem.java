@@ -41,7 +41,13 @@ public class AudioPoem {
         }
 
     }
-
+        public void printArray(){
+            for(Sound x:myWordArray){
+                for(int i=0; i < x.getLength(); i++){
+                
+                }
+            }
+        }
     /**
      * Plays the words, in order with a 200 millisecond pause between each
      *
@@ -78,11 +84,17 @@ public class AudioPoem {
      * @throws InterruptedException
      */
     public void play(int pause, String filename, String path) throws InterruptedException {
+        Sound outputSound = new Sound(myWordArray.length);
+        int j =0;
         for (int i = 0; i < numWords; i++) {
             myWordArray[i].blockingPlay();
             Thread.sleep(pause);
-           // myWordArray.write(path+filename); //Can't find write symbol
+            for(int x=0; i < myWordArray[i].getLength(); x++){
+               outputSound.setSampleValueAt(j,myWordArray[i].getSampleValueAt(x));
+               j++;
+            }
         }
+        outputSound.write(path+filename);
     }
 
     /**
@@ -187,4 +199,5 @@ public class AudioPoem {
             Thread.sleep(400);
         }
     }
+    
 }
