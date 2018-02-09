@@ -91,7 +91,9 @@ public class AudioPoem {
             Thread.sleep(pause);
             for(int x=0; x < myWordArray[i].getLength(); x++){
                outputSound.setSampleValueAt(j,myWordArray[i].getSampleValueAt(x));
-               j++;
+                // add silence to outputSound
+                outputSound.setSampleValueAt(j+{lengthOfSampleAtIndexI},SilenceFile);
+               j+=LengthOfSilence;
             }
         }
         outputSound.write(path+filename);
