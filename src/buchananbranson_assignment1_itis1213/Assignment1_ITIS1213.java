@@ -26,7 +26,7 @@ public class Assignment1_ITIS1213 {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws InterruptedException {
-        
+      
         //TODO: change the path below to reflect the path to your mediasources file
         String path = "/Users/bransonbuchanan/Google Drive/School/Comp Sci/Projects/ITSC_1213/MediaCompClasses/src/mediasources/";
 
@@ -84,7 +84,7 @@ public class Assignment1_ITIS1213 {
         }
 
         // create an audiopoem object out of the sound and the splicearary
-        //AudioPoem myPoem = new AudioPoem(mySound, spliceIndex, numSplicePoints);
+        AudioPoem myPoem = new AudioPoem(mySound, spliceIndex, numSplicePoints);
 
         // DO NOT CHANGE THE CODE ABOVE
         //**********************************************************
@@ -93,11 +93,12 @@ public class Assignment1_ITIS1213 {
         //myPoem.play();
         //Thread.sleep(1000);
         //myPoem.play(2000);
-        //myPoem.play(1500, "output.wav", path); //Won't write out
+        //myPoem.play(500, "output.wav", path); //Won't write out
         //myPoem.playRandomOrder(4,200);
         //myPoem.playReverseOrder(200);
         //myPoem.playDoublets(2);
         //myPoem.playTriplets(3);
+        myPoem.printArray();
         
         //Part 3
         Sound mySound1 = new Sound("the.wav");
@@ -107,9 +108,10 @@ public class Assignment1_ITIS1213 {
         Sound mySound5 = new Sound("rabbit.wav");
         
         Sound newSound = new Sound(combine5Sounds(mySound1,mySound2,mySound3,mySound4,mySound5));
-        int part3Splices[] = {2300,8650,11250,19790,25600,36860,39770,47045,49850,58780};
+        //newSound.normalize();
+        int part3Splices[] = {2300,8700,11250,19790,25600,36860,39770,47045,49850,58780};
         AudioPoem newPoem = new AudioPoem(newSound,part3Splices,10);
-        newPoem.play();
+        //newPoem.play(500,"output.wav",path);
         
         
         // Part 4: When you get to part 4, comment everything from line 28 through line 93, then uncomment the four lines of 
